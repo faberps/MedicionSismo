@@ -8,6 +8,7 @@ package appmedicionsismo.negocio;
 import Framework.AbstractApp;
 import Framework.Disparador;
 import Framework.LecturaPorEvento;
+import appmedicionsismo.vista.GUIPrincipal;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -22,11 +23,9 @@ public class appMedicionSisimica extends AbstractApp{
     /**
      *
      */
-    public static  GestorMedicion gesMedicion = new GestorMedicion(); ;
+    
 
-    public appMedicionSisimica() throws RemoteException, ParseException{
-        
-    }
+   
     
     
 
@@ -35,8 +34,12 @@ public class appMedicionSisimica extends AbstractApp{
         
         
             
-            FabricaSismografo miFabrcia = new FabricaSismografo();
-            Disparador disparador = new Disparador(new LecturaPorEvento(), miFabrcia);
+            FabricaSismografo sismografo = new FabricaSismografo();
+            Disparador disparador = new Disparador(new LecturaPorEvento(), sismografo);
+            GUIPrincipal frmSismico = new GUIPrincipal(disparador);
+            sismografo.Settings(frmSismico.getEscala(), frmSismico.getAlarma());
+            sismografo.crearItemMedicion();
+            frmSismico.setVisible(true);
       
             
             
@@ -46,17 +49,14 @@ public class appMedicionSisimica extends AbstractApp{
     }
     public static void main(String[] args){
         
-        try {
-            String id = "1062";
-            String pro = "10";
-            String des = "20";
+      
             //FrameSismico frmSismico = new FrameSismico(disparador;
             //miFabrcia.Settings(frm.getEscala, frm.gerAlarma);
             //frmSismico.setVisible(true);
-            gesMedicion.agregarMedicion(id, pro, des);
-        } catch (RemoteException ex) {
-            Logger.getLogger(appMedicionSisimica.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //gesMedicion.agregarMedicion(id, pro, des);
+            appMedicionSisimica Medicion = new appMedicionSisimica();
+            Medicion.crearSistemaMedicion();
+        
       
         
     }

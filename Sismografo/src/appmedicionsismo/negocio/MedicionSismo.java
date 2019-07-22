@@ -6,7 +6,7 @@
 package appmedicionsismo.negocio;
 
 import Framework.ItemMedicion;
-import static appmedicionsismo.negocio.appMedicionSisimica.gesMedicion;
+
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
